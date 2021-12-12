@@ -1,2 +1,87 @@
-body {
-}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="leaderboard.css">
+</head>
+    <h1>Leaderboard</h1>
+
+    <div class="studenttabs">
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                <tr>
+                    <td>Question 1</td>
+                    <td>Person 1</td>
+                    <td>Time 1</td>
+                </tr>
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                <tr>
+                    <td>Question 1</td>
+                    <td>Person 1</td>
+                    <td>Time 1</td>
+                </tr>
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                <tr>
+                    <td>Question 1</td>
+                    <td>Person 1</td>
+                    <td>Time 1</td>
+                </tr>
+            </table>
+        </div>
+<!--            <table>-->
+<!--                <tr>-->
+<!--                    <th>Question 1</th>-->
+<!--                </tr>-->
+
+<!--                <tr>-->
+<!--                    {% for Student in student %} {% for Enrollment in enroll%} {%for Teacher in teach%} {% for Classes in classes %} {% if current_user.id == Student.user_id and Student.id == Enrollment.student_id and Enrollment.class_id == Classes.id and Classes.teacher_id-->
+<!--                    == Teacher.id%}-->
+<!--                    <td>{{Classes.coursename}}</td>-->
+<!--                    <td>{{Teacher.name}}</td>-->
+<!--                    <td>{{Classes.Time}}</td>-->
+<!--                    <td>{{Classes.numberofenrolled}}/{{Classes.Capacity}}</td>-->
+<!--                    {% endif %} {% endfor %} {% endfor %} {% endfor %} {% endfor %}-->
+<!--                </tr>-->
+<!--            </table>-->
+    </div>
+<body>
+
+</body>
+
+</html>
