@@ -48,7 +48,7 @@ def postatopic(subject, content):
     temp1 = temp.fetchone()[0]
     topic_id = temp1
     topic_id = str(topic_id)
-    post_reply(topic_id, content)
+    postareply(topic_id, content)
     return topic_id
 
 def postareply(topic_id, content):
@@ -100,6 +100,16 @@ class AnswerForm(FlaskForm):
     submit = SubmitField('Submit Answer')
 
 
+class ReplyForm(FlaskForm):
+    content = TextAreaField("Reply", validators=[InputRequired()])
+    submit = SubmitField('reply')
+
+class NewTopicForm(FlaskForm):
+    subject = StringField("Subject", validators=[InputRequired()])
+    content = TextAreaField("Reply", validators=[InputRequired()])
+    submit = SubmitField('create new post')
+
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -130,11 +140,11 @@ def dashboard():
 @app.route('/topic',methods = ['GET','POST'])
 @login_required
 def topicmethod():
-    topics = querydatabase("SELECT * FROM topic ORDER BY (SELECT MAX(time) FROM reply WHERE reply.topic_id = topic.topic_id) DESC")
+    topics = query_database("SELECT * FROM topic ORDER BY (SELECT MAX(time) FROM reply WHERE reply.topic_id = topic.topic_id) DESC")
     for topic in topics:
-        reply_count = query_db("SELECT count(*) FROM reply WHERE topic_id = ?",[topic["topic_id"]], one=True)["count(*)"]
+        reply_count = query_database("SELECT count(*) FROM reply WHERE topic_id = ?",[topic["topic_id"]], one=True)["count(*)"]
         topic["replies"] = reply_count - 1
-        last_reply = querydatabase("SELECT time FROM reply WHERE topic_id = ? ORDER BY time DESC LIMIT 1", [topic["topic_id"]], one=True)
+        last_reply = query_database("SELECT time FROM reply WHERE topic_id = ? ORDER BY time DESC LIMIT 1", [topic["topic_id"]], one=True)
         topic["last_reply_date"] = last_reply
     return render_template('blog.html',topics = topics)
 
@@ -173,7 +183,7 @@ def correctanswer():
 @login_required
 def questionpage(idvalue):
     form = AnswerForm()
-    temp = question.query.filter_by(id=idvalue)
+    temp = questions.query.filter_by(id=idvalue)
     if form.validate_on_submit():
         usersanswer = form.answer.data
         print('i am in the form ')
