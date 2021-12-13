@@ -33,6 +33,8 @@ class User(db.Model,UserMixin):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(20),unique = True,nullable= False)
     password = db.Column(db.String(80),unique = True,nullable = False)
+    def __repr__(self):
+        return self.username
 
 class question(db.Model):
     id = db.Column(db.Integer,primary_key = True)
@@ -40,6 +42,17 @@ class question(db.Model):
     answer = db.Column(db.String(256),unique = False,nullable = False)
     difficulty = db.Column(db.String(256),unique = False,nullable = False)
     catergory_id = db.Column(db.Integer,db.ForeignKey('categories.id'))
+    def __repr__(self):
+        return self.id
+
+class leaderboard(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    time = db.Column(db.String(256),unique = False, nullable = True)
+    user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
+    user = db.relationship('User', backref=db.backref('leaderboard', lazy=True))
+    ques_id = db.Column(db.Integer,db.ForeignKey('question.id'))
+    question = db.relationship('question', backref=db.backref('leaderboard',lazy=True))
+
 
 class RegisterForm(FlaskForm):
     username = StringField(validators=[InputRequired(),Length(min = 4,max=20)],render_kw={"placeholder":"username"})
@@ -59,9 +72,6 @@ class LoginForm(FlaskForm):
 class AnswerForm(FlaskForm):
     answer = StringField(validators=[InputRequired(),Length(min = 1,max=30)],render_kw={"placeholder":"answer"})
     submit = SubmitField('Submit Answer')
-
-
-
 
 
 @app.route('/')
@@ -121,8 +131,8 @@ def questionpage(idvalue):
 @app.route('/leaderboard',methods = ['GET','POST'])
 @login_required
 def leaderboard():
-
-    return render_template('leaderboard.html')
+    lb = leaderboard.query.all()
+    return render_template('leaderboard.html', lb = lb)
 
 
 @app.route('/register',methods = ['GET','POST'])
