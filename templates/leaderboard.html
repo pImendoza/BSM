@@ -23,13 +23,13 @@
                 
                 
                 {% for row in lb %}
-                {% if row["ques_id"] == 1%}{% if row["time"] is not None %}
+                {% if row["ques_id"] == 1%}{% if row["time"] != 'N/A' %}
                 <tr>
                     <td>Question 1</td>
                     <td>{{row["user_id"]}}</td>
                     <td>{{row["time"]}}</td>
                 </tr>
-                {% endif %}
+                {% endif %}{% endif %}
                 {% endfor %}
 
 
@@ -48,13 +48,13 @@
                 </tr>
 
                 {% for row in lb %}
-                {% if row["ques_id"] == 2%}{% if row["time"] is not None %}
+                {% if row["ques_id"] == 2%}{% if row["time"] != "N/A" %}
                 <tr>
                     <td>Question 2</td>
                     <td>{{row["user_id"]}}</td>
                     <td>{{row["time"]}}</td>
                 </tr>
-                {% endif %}
+                {% endif %}{% endif %}
                 {% endfor %}
             </table>
         </div>
