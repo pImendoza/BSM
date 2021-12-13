@@ -1,11 +1,12 @@
 import bcrypt
-from flask import Flask,render_template,url_for,redirect
+from flask import Flask,render_template,url_for,redirect,session,flash,g
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin,login_user,LoginManager,login_required,logout_user,current_user
 from flask_wtf import FlaskForm
 import sqlite3
+from time import time
 import os
-from wtforms import StringField,PasswordField,SubmitField
+from wtforms import StringField,PasswordField,SubmitField,TextAreaField
 from wtforms.validators import InputRequired,Length,ValidationError
 from flask_bcrypt import Bcrypt
 
@@ -29,18 +30,48 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+def query_database(query, args=(), one=False):
+    with sqlite3.connect(db_path) as con:
+            cur = con.cursor()
+            cur.execute(query, args)
+    rv = [dict((cur.description[idx][0], value)for idx, value in enumerate(row)) for row in cur.fetchall()]
+    return (rv[0] if rv else None) if one else rv
+
+def timestamp():
+    return str(int(time()))
+
+def postatopic(subject, content):
+    with sqlite3.connect(db_path) as con:
+            cur = con.cursor()
+            cur.execute("insert into topic (subject) values (?)",(subject,))
+            temp = cur.execute("select topic_id from topic where subject = ? ",(subject,))
+    temp1 = temp.fetchone()[0]
+    topic_id = temp1
+    topic_id = str(topic_id)
+    post_reply(topic_id, content)
+    return topic_id
+
+def postareply(topic_id, content):
+    g.user = current_user.get_id()
+    user_value = str(g.user)
+    with sqlite3.connect(db_path) as con:
+            cur = con.cursor()
+            cur.execute("INSERT INTO reply (topic_id, time, content, author) values (?, ?, ?, ?)",(topic_id, timestamp(), content,user_value))
+
+
 class User(db.Model,UserMixin):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(20),unique = True,nullable= False)
     password = db.Column(db.String(80),unique = True,nullable = False)
 
 
-class question(db.Model):
+class questions(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     question = db.Column(db.String(256),unique = False,nullable = False)
     answer = db.Column(db.String(256),unique = False,nullable = False)
     difficulty = db.Column(db.String(256),unique = False,nullable = False)
-    catergory_id = db.Column(db.Integer,db.ForeignKey('categories.id'))
+    catergory = db.Column(db.String(256),unique = False,nullable = False)
+
 
 
 class leaderboard(db.Model):
@@ -95,6 +126,40 @@ def logout():
 def dashboard():
 
     return render_template('dashboard.html')
+
+@app.route('/topic',methods = ['GET','POST'])
+@login_required
+def topicmethod():
+    topics = querydatabase("SELECT * FROM topic ORDER BY (SELECT MAX(time) FROM reply WHERE reply.topic_id = topic.topic_id) DESC")
+    for topic in topics:
+        reply_count = query_db("SELECT count(*) FROM reply WHERE topic_id = ?",[topic["topic_id"]], one=True)["count(*)"]
+        topic["replies"] = reply_count - 1
+        last_reply = querydatabase("SELECT time FROM reply WHERE topic_id = ? ORDER BY time DESC LIMIT 1", [topic["topic_id"]], one=True)
+        topic["last_reply_date"] = last_reply
+    return render_template('blog.html',topics = topics)
+
+
+@app.route('/topic/new', methods=['GET', 'POST'])
+def new_topic():
+    form = NewTopicForm()
+    if form.validate_on_submit():
+        new_topic_id = postatopic(form.subject.data, form.content.data)
+        flash("New topic posted.")
+        return redirect('/topic/' + new_topic_id)
+    return render_template("newtopic.html", form=form)
+
+@app.route('/topic/<topic_id>', methods=['GET', 'POST'])
+def view_topic(topic_id):
+    subject = query_database("SELECT subject FROM topic WHERE topic_id = ?", [topic_id], one=True)
+    form = ReplyForm()
+    if form.validate_on_submit():
+        postareply(topic_id, form.content.data)
+    replies = query_database("SELECT * FROM reply WHERE topic_id = ? ORDER BY time",[topic_id])
+    return render_template("topic.html", subject=subject, replies=replies, 
+                           form=form)
+
+
+
 
 @app.route('/correct',methods=['GET','POST'])
 @login_required
