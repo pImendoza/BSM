@@ -1,0 +1,47 @@
+.stopwatch {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 23px;
+    width: 100%;
+    padding-top: 25px;
+}
+
+.circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+    width: 270px;
+    border: 2px solid;
+    border-radius: 50%;
+    color: #17a2b8;
+}
+
+.time {
+    font-family: "Roboto Mono", monospace;
+    font-weight: 300;
+    font-size: 48px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    width: 187px;
+}
+
+button {
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+    border: none;
+    margin: 0;
+    outline: none;
+}
+
+#playButton {
+    display: block;
+}
+
+#pauseButton {
+    display: none;
+}
