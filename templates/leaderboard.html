@@ -20,12 +20,20 @@
                     <th>Top User</th>
                     <th>Time</th>
                 </tr>
-
+                
+                
+                {% for row in lb %}
+                {% if row["ques_id"] == 1%}{% if row["time"] is not None %}
                 <tr>
                     <td>Question 1</td>
-                    <td>Person 1</td>
-                    <td>Time 1</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
                 </tr>
+                {% endif %}
+                {% endfor %}
+
+
+
             </table>
         </div>
 
@@ -39,16 +47,20 @@
                     <th>Time</th>
                 </tr>
 
+                {% for row in lb %}
+                {% if row["ques_id"] == 2%}{% if row["time"] is not None %}
                 <tr>
-                    <td>Question 1</td>
-                    <td>Person 1</td>
-                    <td>Time 1</td>
+                    <td>Question 2</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
                 </tr>
+                {% endif %}
+                {% endfor %}
             </table>
         </div>
 
         <input type="radio" id="Ha" name="StudentTabs">
-        <label for="Ha">Medium</label>
+        <label for="Ha">Hard</label>
         <div class="tab">
             <table>
                 <tr>
@@ -58,27 +70,13 @@
                 </tr>
 
                 <tr>
-                    <td>Question 1</td>
+                    <td>Question 3</td>
                     <td>Person 1</td>
                     <td>Time 1</td>
                 </tr>
             </table>
         </div>
-<!--            <table>-->
-<!--                <tr>-->
-<!--                    <th>Question 1</th>-->
-<!--                </tr>-->
 
-<!--                <tr>-->
-<!--                    {% for Student in student %} {% for Enrollment in enroll%} {%for Teacher in teach%} {% for Classes in classes %} {% if current_user.id == Student.user_id and Student.id == Enrollment.student_id and Enrollment.class_id == Classes.id and Classes.teacher_id-->
-<!--                    == Teacher.id%}-->
-<!--                    <td>{{Classes.coursename}}</td>-->
-<!--                    <td>{{Teacher.name}}</td>-->
-<!--                    <td>{{Classes.Time}}</td>-->
-<!--                    <td>{{Classes.numberofenrolled}}/{{Classes.Capacity}}</td>-->
-<!--                    {% endif %} {% endfor %} {% endfor %} {% endfor %} {% endfor %}-->
-<!--                </tr>-->
-<!--            </table>-->
     </div>
 <body>
 
