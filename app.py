@@ -110,6 +110,8 @@ class NewTopicForm(FlaskForm):
     submit = SubmitField('create new post')
 
 
+#db.create_all()
+    
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -174,6 +176,16 @@ def view_topic(topic_id):
 @app.route('/correct',methods=['GET','POST'])
 @login_required
 def correctanswer():
+    end = timer()
+    c_time = str(end-start)
+            
+    g.user = current_user.get_id()
+    user_value = str(g.user)
+    
+
+    L = leaderboard(time = c_time, user_id = user_value, ques_id = c_ques)
+    db.session.add(L)
+    db.session.commit()
     return render_template('correct.html')
 
 
@@ -193,7 +205,11 @@ def questionpage(idvalue):
             answer  = str(temp.fetchone()[0])
         if usersanswer == answer:
             print('i am here')
-            return render_template('correct.html')
+            global c_ques 
+            QP_temp = cur.execute("select id from questions where id = ?",(idvalue,))
+            c_ques = str(QP_temp.fetchone()[0])
+
+            return redirect(url_for('correctanswer')) 
     print('i am outside')
     return render_template('questionpage.html',query = temp,form= form)
 
