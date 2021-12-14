@@ -79,7 +79,7 @@ class leaderboard(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     time = db.Column(db.String(256),unique = False, nullable = True)
     user_id = db.Column(db.Integer,db.ForeignKey('user.id'))
-    ques_id = db.Column(db.Integer,db.ForeignKey('question.id'))
+    ques_id = db.Column(db.Integer,db.ForeignKey('questions.id'))
 
 class RegisterForm(FlaskForm):
     username = StringField(validators=[InputRequired(),Length(min = 4,max=20)],render_kw={"placeholder":"username"})
@@ -93,7 +93,7 @@ class RegisterForm(FlaskForm):
 class LoginForm(FlaskForm):
     username = StringField(validators=[InputRequired(),Length(min = 4,max=20)],render_kw={"placeholder":"username"})
     password = PasswordField(validators=[InputRequired(),Length(min = 4,max=20)],render_kw={"placeholder":"password"})
-    submit = SubmitField('Login in')
+    submit = SubmitField('Login')
 
 
 class AnswerForm(FlaskForm):
@@ -103,7 +103,7 @@ class AnswerForm(FlaskForm):
 
 class ReplyForm(FlaskForm):
     content = TextAreaField("Reply", validators=[InputRequired()])
-    submit = SubmitField('reply')
+    submit = SubmitField('Reply')
 
 class NewTopicForm(FlaskForm):
     subject = StringField("Subject", validators=[InputRequired()])
@@ -180,7 +180,7 @@ start = ""
 @login_required
 def correctanswer():
     end = timer()
-    c_time = str(end-start)
+    c_time = round((end-start),6)
             
     g.user = current_user.get_id()
     user_value = str(g.user)
@@ -206,7 +206,7 @@ def questionpage(idvalue):
         print('i am in the form ')
         with sqlite3.connect(db_path) as con:
             cur = con.cursor()
-            temp = cur.execute("select answer from question where id = ?",(idvalue,))
+            temp = cur.execute("select answer from questions where id = ?",(idvalue,))
             answer  = str(temp.fetchone()[0])
         if usersanswer == answer:
             print('i am here')
