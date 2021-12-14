@@ -197,6 +197,8 @@ def correctanswer():
 @app.route('/questionpage/<int:idvalue>',methods = ['GET','POST'])
 @login_required
 def questionpage(idvalue):
+    global start
+    start = timer()
     form = AnswerForm()
     temp = questions.query.filter_by(id=idvalue)
     if form.validate_on_submit():
