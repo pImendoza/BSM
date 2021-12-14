@@ -8,8 +8,9 @@
     <title>Leaderboard</title>
     <link rel="stylesheet" href="leaderboard.css">
 </head>
-    <h1>Leaderboard</h1>
 
+<body>
+    <h1>Leaderboard</h1>
     <div class="studenttabs">
         <input type="radio" id="Ea" name="StudentTabs" checked="checked">
         <label for="Ea">Easy</label>
@@ -20,8 +21,6 @@
                     <th>Top User</th>
                     <th>Time</th>
                 </tr>
-                
-                
                 {% for row in lb %}
                 {% if row["ques_id"] == 1%}{% if row["time"] != 'N/A' %}
                 <tr>
@@ -31,9 +30,6 @@
                 </tr>
                 {% endif %}{% endif %}
                 {% endfor %}
-
-
-
             </table>
         </div>
 
@@ -69,17 +65,603 @@
                     <th>Time</th>
                 </tr>
 
+                {% for row in lb %}
+                {% if row["ques_id"] == 3%}{% if row["time"] != "N/A" %}
                 <tr>
                     <td>Question 3</td>
-                    <td>Person 1</td>
-                    <td>Time 1</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
                 </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
             </table>
         </div>
 
-    </div>
-<body>
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 4%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 4</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
 
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 5%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 5</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 6%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 6</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 7%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 7</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 8%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 8</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 9%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 9</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 10%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 10</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 11%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 11</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 12%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 12</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 13%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 13</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 14%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 14</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 15%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 15</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 16%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 16</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 17%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 17</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 18%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 18</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 19%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 19</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 20%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 20</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 21%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 21</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 22%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 22</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 23%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 23</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 24%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 24</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 25%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 25</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 26%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 26</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 27%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 27</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ea" name="StudentTabs" checked="checked">
+        <label for="Ea">Easy</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+                {% for row in lb %}
+                {% if row["ques_id"] == 28%}{% if row["time"] != 'N/A' %}
+                <tr>
+                    <td>Question 28</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Me" name="StudentTabs">
+        <label for="Me">Medium</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 29%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 29</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+
+        <input type="radio" id="Ha" name="StudentTabs">
+        <label for="Ha">Hard</label>
+        <div class="tab">
+            <table>
+                <tr>
+                    <th>Question Number</th>
+                    <th>Top User</th>
+                    <th>Time</th>
+                </tr>
+
+                {% for row in lb %}
+                {% if row["ques_id"] == 30%}{% if row["time"] != "N/A" %}
+                <tr>
+                    <td>Question 30</td>
+                    <td>{{row["user_id"]}}</td>
+                    <td>{{row["time"]}}</td>
+                </tr>
+                {% endif %}{% endif %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 </body>
 
 </html>
