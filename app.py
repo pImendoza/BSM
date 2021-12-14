@@ -10,6 +10,7 @@ from wtforms import StringField,PasswordField,SubmitField,TextAreaField
 from wtforms.validators import InputRequired,Length,ValidationError
 from flask_bcrypt import Bcrypt
 
+from timeit import default_timer as timer
 
 app = Flask(__name__)
 db = SQLAlchemy(app)
@@ -173,6 +174,8 @@ def view_topic(topic_id):
 
 
 
+c_ques = ""
+start = ""
 @app.route('/correct',methods=['GET','POST'])
 @login_required
 def correctanswer():
